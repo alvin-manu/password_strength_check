@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: url("https://static.vecteezy.com/system/resources/previews/022/589/003/non_2x/modern-technology-circle-background-or-abstract-image-in-the-style-of-rtx-on-blueprint-circuitry-lens-flare-light-navy-and-sky-blue-illustration-generative-ai-photo.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, .7);
+            background-blend-mode: multiply;
+        }
+        #result{
+            font-size: 17px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div
+                    class="password_container d-flex flex-column align-content-center justify-content-center text-center border border-2 m-5 p-4 border-light rounded-2 bg-white">
+                    <h4>Password Strength Checker</h4>
+                    <input class="form-control form-control-lg mt-3 mb-3" type="password" aria-label=".form-control-lg example"
+                        oninput="check()" id="password_text" placeholder="Enter Password">
+                    <div id="result" class="mt-3">
+                        <p>Password Strength: <span id="result_container"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <script>
+        let passwordText = document.getElementById("password_text");
+        let resultContainer = document.getElementById("result_container");
+        function check() {
+
+            resultContainer.innerText = "Weak";
+            resultContainer.style.color = "red";
+            let Password = passwordText.value;
+            let pnum = Password.split('').filter(char => "0123456789".includes(char));
+            console.log(pnum)
+            let pspecial = Password.split('').filter(char => "!@#$%^&*(),.?\":{}|<>".includes(char));
+            if (Password.length > 6 && pnum.length > 0) {
+                resultContainer.innerText = "Medium";
+                resultContainer.style.color = "orange";
+            }
+            if (Password.length > 6 && pnum.length > 0 && pspecial.length > 0) {
+                resultContainer.innerText = "Strong";
+                resultContainer.style.color = "green";
+
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
